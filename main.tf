@@ -23,21 +23,21 @@ resource "aws_s3_object" "error_html" {
 
 # Upload CSS files to S3 bucket
 resource "aws_s3_object" "css_files" {
-  for_each = fileset("website/assets/style", "**/*.css")
-  bucket   = aws_s3_bucket.website_bucket.id
-  key      = "assets/style/${each.value}"
-  source   = "website/assets/style/${each.value}"
-  etag     = filemd5("website/assets/style/${each.value}")
+  for_each     = fileset("website/assets/style", "**/*.css")
+  bucket       = aws_s3_bucket.website_bucket.id
+  key          = "assets/style/${each.value}"
+  source       = "website/assets/style/${each.value}"
+  etag         = filemd5("website/assets/style/${each.value}")
   content_type = "text/css" # Setting the MIME type
 }
 
 # Upload JS files to S3 bucket
 resource "aws_s3_object" "js_files" {
-  for_each = fileset("website/assets/style", "**/*.js")
-  bucket   = aws_s3_bucket.website_bucket.id
-  key      = "assets/style/${each.value}"
-  source   = "website/assets/style/${each.value}"
-  etag     = filemd5("website/assets/style/${each.value}")
+  for_each     = fileset("website/assets/style", "**/*.js")
+  bucket       = aws_s3_bucket.website_bucket.id
+  key          = "assets/style/${each.value}"
+  source       = "website/assets/style/${each.value}"
+  etag         = filemd5("website/assets/style/${each.value}")
   content_type = "application/javascript" # Setting the MIME type
 }
 
@@ -48,16 +48,23 @@ resource "aws_s3_object" "image_files" {
   key      = "assets/images/${each.value}"
   source   = "website/assets/images/${each.value}"
   etag     = filemd5("website/assets/images/${each.value}")
-  content_type = "image/*" # Setting the MIME type based on file extension
+
+  content_type = lookup({
+    "jpg"  = "image/jpeg"
+    "jpeg" = "image/jpeg"
+    "png"  = "image/png"
+    "gif"  = "image/gif"
+    "svg"  = "image/svg"
+  }, regex("\\.([^.]+)$", each.value)[0], "")
 }
 
 # Upload fonts to S3 bucket
 resource "aws_s3_object" "font_files" {
-  for_each = fileset("website/assets/fonts", "**/*")
-  bucket   = aws_s3_bucket.website_bucket.id
-  key      = "assets/fonts/${each.value}"
-  source   = "website/assets/fonts/${each.value}"
-  etag     = filemd5("website/assets/fonts/${each.value}")
+  for_each     = fileset("website/assets/fonts", "**/*")
+  bucket       = aws_s3_bucket.website_bucket.id
+  key          = "assets/fonts/${each.value}"
+  source       = "website/assets/fonts/${each.value}"
+  etag         = filemd5("website/assets/fonts/${each.value}")
   content_type = "font/*" # Setting the MIME type based on file extension
 }
 
