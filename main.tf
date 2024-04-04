@@ -54,7 +54,7 @@ resource "aws_s3_object" "image_files" {
     "jpeg" = "image/jpeg"
     "png"  = "image/png"
     "gif"  = "image/gif"
-    "svg"  = "image/svg"
+    "svg"  = "image/svg+xml"
   }, regex("\\.([^.]+)$", each.value)[0], "")
 }
 
