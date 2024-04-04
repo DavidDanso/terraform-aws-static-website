@@ -21,6 +21,37 @@ resource "aws_s3_object" "error_html" {
   content_type = "text/html" # Setting the MIME type
 }
 
+# Upload CSS to S3 bucket
+resource "aws_s3_object" "css" {
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "assets/style/css/pricing.css"
+  source = "website/assets/style/css/pricing.css"
+}
+
+# Upload JS to S3 bucket
+resource "aws_s3_object" "js" {
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "assets/style/js/pricing.js"
+  source = "website/assets/style/js/pricing.js"
+}
+
+# Upload images to S3 bucket
+resource "aws_s3_object" "images" {
+  for_each = fileset("website/assets/images", "**/*.*")
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "assets/images/${each.value}"
+  source = "website/assets/images/${each.value}"
+}
+
+# Upload fonts to S3 bucket
+resource "aws_s3_object" "fonts" {
+  for_each = fileset("website/assets/fonts", "**/*.*")
+
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "assets/fonts/${each.value}"
+  source = "website/assets/fonts/${each.value}"
+}
+
 # Create CloudFront Origin Access Identity
 resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "Origin Access Identity for static website"
@@ -47,11 +78,17 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     target_origin_id = var.bucket_name
 
     forwarded_values {
-      query_string = false
+      query_string = true
 
       cookies {
         forward = "none"
       }
+
+      # Forward headers if needed
+      # headers = ["Origin"]
+
+      # Forward these specific paths
+      query_string_cache_keys = ["css", "js", "jpg", "jpeg", "png", "gif", "svg", "woff", "woff2", "ttf", "otf"]
     }
 
     viewer_protocol_policy = "redirect-to-https"
