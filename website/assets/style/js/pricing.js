@@ -51,38 +51,6 @@ $(".pulse").hover(
   }
 );
 
-//
-var tl = gsap.timeline();
-tl.from(".animate-this", {
-  duration: 1,
-  y: -30,
-  opacity: 0,
-  stagger: 1,
-  delay: 0.3,
-});
-//
-TweenMax.from(".is-animated", 1, {
-  delay: 1.4,
-  opacity: 0,
-  ease: Expo.easeInOut,
-});
-var tl = gsap.timeline();
-tl.to(".loading-screen", {
-  duration: 1.2,
-  width: "100%",
-  left: "0%",
-  ease: "Expo.easeInOut",
-});
-
-tl.to(".loading-screen", {
-  duration: 1,
-  width: "100%",
-  left: "100%",
-  ease: "Expo.easeInOut",
-  delay: 0.3,
-});
-tl.set(".loading-screen", { left: "-100%" });
-
 //Cursor animation
 let mouseCursor = document.querySelector(".cursor");
 let links = document.querySelectorAll("a");
@@ -111,27 +79,6 @@ links.forEach((link) => {
     });
   });
 });
-
-//Lax effect
-window.onload = function () {
-  document.getElementById("main").classList.add("loaded");
-
-  lax.setup();
-
-  const update = () => {
-    lax.update(window.scrollY);
-    window.requestAnimationFrame(update);
-  };
-
-  window.requestAnimationFrame(update);
-
-  let w = window.innerWidth;
-  window.addEventListener("resize", function () {
-    if (w !== window.innerWidth) {
-      lax.updateElements();
-    }
-  });
-};
 
 // Image animation //
 var iconBox = document.querySelectorAll(".iconBox");
