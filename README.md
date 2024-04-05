@@ -3,6 +3,28 @@ Terraform AWS S3 Static Site
 
 This repository contains Terraform code to host a static website on AWS S3.
 
+
+## Architecture
+
+<table width="100%"> 
+  <tr>
+    <td width="50%">      
+    <img src="https://github.com/DavidDanso/terraform-aws-static-website/blob/main/website/assets/images/conceptual%20diagram.png" />
+    </td> 
+  </tr>
+</table>
+
+
+### Tech Stack and AWS Services
+---------------------------
+
+- **Terraform**: Infrastructure as Code (IaC) tool for provisioning and managing AWS resources.
+- **AWS S3**: Simple Storage Service for storing and serving static website content.
+- **CloudFront**: Content Delivery Network (CDN) for distributing static content globally and improving performance.
+
+This is a basic example of a Terraform AWS S3 static site. Depending on your requirements, you might need to add more services or modify this architecture.
+
+
 Prerequisites
 -------------
 
@@ -55,11 +77,9 @@ terraform apply
 terraform destroy
 ```
 
-Tech Stack and AWS Services
----------------------------
+## Author
+David Danso - Initial work - [GitHub Profile](https://github.com/DavidDanso)
 
-- **Terraform**: Infrastructure as Code (IaC) tool for provisioning and managing AWS resources.
-- **AWS S3**: Simple Storage Service for storing and serving static website content.
-- **CloudFront**: Content Delivery Network (CDN) for distributing static content globally and improving performance.
+##### Email: davidkellybrownson@gmail.com
 
-This is a basic example of a Terraform AWS S3 static site. Depending on your requirements, you might need to add more services or modify this architecture.
+### Happy Coding!
