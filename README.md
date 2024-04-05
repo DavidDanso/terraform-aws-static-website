@@ -44,7 +44,7 @@ git clone https://github.com/DavidDanso/terraform-aws-static-website.git
 2. **Navigate to the repository**:
 
 ```bash
-cd terraform-aws-s3-static-site
+cd terraform-aws-s3-static-website
 ```
 
 3. **Configure AWS credentials**:
