@@ -9,7 +9,7 @@ This repository contains Terraform code to host a static website on AWS S3.
 <table width="100%"> 
   <tr>
     <td width="50%">      
-    <img src="https://github.com/DavidDanso/terraform-aws-static-website/blob/main/website/assets/images/conceptual%20diagram.png" />
+    <img src="https://github.com/DavidDanso/terraform-aws-static-website/blob/main/website/assets/images/conceptual%20diagram.png?raw=true" />
     </td> 
   </tr>
 </table>
