@@ -59,7 +59,7 @@ aws configure
 terraform init
 ```
 
-5. **Change the infrastructure**:
+5. **Review changes**:
 
 ```bash
 terraform plan
